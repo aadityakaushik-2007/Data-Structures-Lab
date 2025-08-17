@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int arr[100];
-int size = 0;
+const int size = 100;
 void create() {
     cout << "Enter number of elements (max 100) : ";
     cin >> size;

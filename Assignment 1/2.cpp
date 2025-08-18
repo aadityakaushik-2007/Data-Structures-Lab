@@ -17,7 +17,7 @@ int main(){
     bool isDuplicate = false;
     for (int j = 0; j < unique; j++) {
         if (arr[i] == arr[j]) {
-            isDuplicate = true;
+            isDuplicate = true; 
             break;
         }
     }

@@ -1,33 +1,33 @@
 #include <iostream>
 using namespace std;
 int arr[100];
-const int size = 100;
+int s = 100;
 void create() {
     cout << "Enter number of elements (max 100) : ";
-    cin >> size;
-    if(size>100){
+    cin >> s;
+    if(s>100){
     cout<<"Enter valid size"<<endl;
-    cin >> size;
+    cin >> s;
     }
-    cout << "Enter " << size << " elements:\n";
-    for (int i = 0; i < size; i++)
+    cout << "Enter " << s << " elements:\n";
+    for (int i = 0; i < s; i++)
         cin >> arr[i];
 }
 
 void display() {
-    if (size == 0) {
+    if (s == 0) {
         cout << "Empty Array.\n";
         return;
     }
     cout << "Array Elements: ";
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < s; i++) {
         cout << arr[i] << " ";
     }
     cout << "\n";
 }
 
 void insert() {
-    if (size == 100)
+    if (s == 100)
         cout << "Array is full. Cannot insert more elements"<<endl;
     else{
     int n, in;
@@ -35,41 +35,41 @@ void insert() {
     cin >> n;
     cout << "Enter position to insert : ";
     cin >> in;
-    if (in < 0 || in > size) {
+    if (in < 0 || in > s) {
         cout << "Enter a valid position"<<endl;
         return;
     }
-    for (int i = size; i > in; i--) 
+    for (int i = s; i > in; i--) 
         arr[i] = arr[i-1];
     arr[in] = n;
-    ++size;
+    ++s;
     cout << "Element inserted"<<endl;
 }
 }
 
 void delete_num() {
-    if (size == 0) {
+    if (s == 0) {
         cout << "Empty Array"<<endl;
         return;
     }
     int in;
     cout << "Enter position to delete : ";
     cin >> in;
-    if (in < 0 || in >= size) {
+    if (in < 0 || in >= s) {
         cout << "Invalid position"<<endl;
         return;
     }
     cout << "Deleted"<< endl;
-    for (int i = in; i < size - 1; i++)
+    for (int i = in; i < s - 1; i++)
         arr[i] = arr[i + 1];
-    --size;
+    --s;
 }
 
 void lin_search() {
     int n;
     cout << "Enter element to search for: ";
     cin >> n;
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < s; i++) {
         if (arr[i] == n) {
             cout << "Element found at index " << i << "\n";
             return;

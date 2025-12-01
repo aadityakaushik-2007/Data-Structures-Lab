@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+};
+
+void heapify(Node* nodes[], int n, int i) {
+    int largest = i;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
+
+    if (left < n && nodes[left]->data > nodes[largest]->data)
+        largest = left;
+
+    if (right < n && nodes[right]->data > nodes[largest]->data)
+        largest = right;
+
+    if (largest != i) {
+        // swap data of nodes
+        int temp = nodes[i]->data;
+        nodes[i]->data = nodes[largest]->data;
+        nodes[largest]->data = temp;
+
+        heapify(nodes, n, largest);
+    }
+}
+
+void heapSort(Node* nodes[], int n) {
+    // Build max heap
+    for (int i = n/2 - 1; i >= 0; i--) {
+        heapify(nodes, n, i);
+    }
+
+    // Extract elements one by one
+    for (int i = n - 1; i > 0; i--) {
+        // swap root with last node
+        int temp = nodes[0]->data;
+        nodes[0]->data = nodes[i]->data;
+        nodes[i]->data = temp;
+
+        heapify(nodes, i, 0);
+    }
+}
+
+int main() {
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    Node* nodes[100]; // array of node pointers
+
+    // Create nodes
+    for(int i = 0; i < n; i++) {
+        nodes[i] = new Node();
+        cin >> nodes[i]->data;
+        nodes[i]->left = NULL;
+        nodes[i]->right = NULL;
+    }
+
+    // Link children to form binary tree structure
+    for(int i = 0; i < n; i++) {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        if(left < n) nodes[i]->left = nodes[left];
+        if(right < n) nodes[i]->right = nodes[right];
+    }
+
+    heapSort(nodes, n);
+
+    cout << "Sorted elements: ";
+    for(int i = 0; i < n; i++) {
+        cout << nodes[i]->data << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
